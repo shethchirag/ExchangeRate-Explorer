@@ -28,7 +28,7 @@ function InputBox(props) {
           type="number"
           disabled={amountDisable}
           value={amount !== 0 ? amount : ""}
-          placeholder={amount !== 0 ? "" : "Enter Amount"}
+          placeholder={amount !== 0 ? "" : "Amount"}
           onChange={(e) =>
             onAmountChange && onAmountChange(Number(e.target.value))
           }
