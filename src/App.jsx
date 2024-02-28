@@ -10,7 +10,7 @@ function App() {
   const [to, setTo] = useState("usd");
   const [allConversions, setAllConversions] = useState({});
   const [convertedAmount, setConvertedAmount] = useState(0);
-  const [showTable, setShowTable] = useState(false);
+
   const currencyInfo = useCurrencyInfo(from);
   const options = Object.keys(currencyInfo);
 
@@ -26,7 +26,6 @@ function App() {
     }
     setConvertedAmount(allConversions[to]);
     setAllConversions(allConversions);
-    setShowTable(true);
   };
 
   const handleSubmit = (e) => {
@@ -76,12 +75,7 @@ function App() {
               </button>
             </form>
           </div>
-          {showTable ? (
-            <div className="card grid-item">
-              <p>{from.toUpperCase()} EXCHANGE RATES TABLE</p>
-              <CurrencyTable allConversions={allConversions} />
-            </div>
-          ) : (
+          {Object.keys(allConversions).length === 0 ? (
             <div
               className="card grid-item"
               style={{
@@ -100,6 +94,11 @@ function App() {
               >
                 Please Convert an Amount to view the Exchange Rates Table
               </p>
+            </div>
+          ) : (
+            <div className="card grid-item">
+              <p>{from.toUpperCase()} EXCHANGE RATES TABLE</p>
+              <CurrencyTable allConversions={allConversions} />
             </div>
           )}
         </div>
